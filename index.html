@@ -76,13 +76,22 @@
 
         .logo-text { font-size: 1.3rem; font-weight: 700; }
 
-        .nav-links { display: flex; gap: 20px; }
+        .nav-links { display: flex; gap: 10px; }
         .nav-links a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
+            padding-bottom: 10px;
+            width:90%;
+            text-align: center;
             transition: var(--transition);
+        }
+        .nav-links a.nav-small{
+          font-size: 0.8rem;
+          color: var(--text-muted);
+          padding: 2px 0;
+          line-height: 1.2;
         }
         .nav-links a:hover { color: #5dade2; }
 
@@ -165,6 +174,53 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
+        }
+        
+        .news {
+          max-width: 800px;
+          margin: 2rem auto;
+          padding: 1rem;
+          border-radius: 12px;
+          background: rgba(255,255,255,0.05);
+        }
+        
+        .news h2 {
+          font-size: 2rem;
+          margin: 0 0 30px 0;
+          text-align: center;
+        }
+        
+        .news button {
+          background: none;
+          border: none;
+          color: #4da3ff;
+          cursor: pointer;
+          font-size: 0.9rem;
+          width:100%;
+          text-align: center;
+        }
+        
+        .news-list {
+          margin-top: 0.5rem;
+          padding-left: 1rem;
+          overflow: hidden;
+          max-height: 4.5em; /* 初期表示の高さ（2〜3行分） */
+          transition: max-height 0.3s ease;
+        }
+        
+        .news-list li {
+          font-size: 0.9rem;
+          line-height: 1.5;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .news-list time {
+          color: #aaa;
+          margin-right: 0.5em;
+        }
+        .news-list p{
+            margin: 0;
         }
 
         .card {
@@ -259,6 +315,17 @@
             font-size: 0.8rem;
             margin-bottom: 20px;
         }
+        .footer-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: #5dade2;
+        }
+
     </style>
 </head>
 <body>
@@ -273,9 +340,13 @@
     </button>
     <nav class="nav-links" id="navMenu">
         <a href="#features" onclick="toggleMenu()">特徴</a>
+        <a href="#news" onclick="toggleMenu()">お知らせ</a>
         <a href="#commands" onclick="toggleMenu()">機能一覧</a>
         <a href="#faq" onclick="toggleMenu()">Q&A</a>
         <a href="#support" onclick="toggleMenu()">サポート</a>
+        <!-- 追加 -->
+        <a href="./terms.html" class="nav-small">利用規約</a>
+        <a href="./policy.html"class="nav-small">プライバシーポリシー</a>
     </nav>
 </header>
 
@@ -314,6 +385,19 @@
                 <p>荒らしや攻撃的な言葉ではなく、みんなが笑顔になれるようなポジティブな機能提供を心がけています。</p>
             </div>
         </div>
+    </section>
+    
+    <section id="news" class="news">
+      <h2>お知らせ</h2>
+      <ul class="news-list" id="newsList">
+        <li>
+          <time datetime="2026-01-10">2026/01/10</time>
+          <p>公開テストを開始しました</p>
+        </li>
+      </ul>
+        <button id="newsToggle" aria-expanded="false">
+          もっと見る
+        </button>
     </section>
 
     <section id="commands" style="background-color: var(--bg-light); border-radius: 60px 60px 0 0;">
@@ -377,6 +461,36 @@
         </div>
     </section>
 
+    <section id="legal" style="background-color: var(--bg-light); border-radius: 60px; margin-top: 80px;">
+        <div class="section-title">
+            <h2>ご利用にあたって</h2>
+            <p>sleepwalkerBOT を安心してご利用いただくための情報です。</p>
+        </div>
+    
+        <div class="grid" style="max-width: 900px; margin: 0 auto;">
+            <div class="card" style="text-align: center;">
+                <h3>利用規約</h3>
+                <p>
+                    sleepwalkerBOT の利用条件や注意事項をまとめています。
+                    導入前・ご利用前に必ずご確認ください。
+                </p>
+                <a href="./terms.html" class="btn btn-secondary" style="margin-top: 15px;">
+                    利用規約を読む
+                </a>
+            </div>
+    
+            <div class="card" style="text-align: center;">
+                <h3>プライバシーポリシー</h3>
+                <p>
+                    取得する情報や、その取り扱い方針について記載しています。
+                </p>
+                <a href="./policy.html" class="btn btn-secondary" style="margin-top: 15px;">
+                    プライバシーポリシーを読む
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section id="support">
         <div class="support-box">
             <h2>困ったときは？</h2>
@@ -394,6 +508,11 @@
 </main>
 
 <footer style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--primary-blue); font-size: 0.9rem;">
+    <div style="margin-bottom: 15px;">
+        <a href="./terms.html" class="footer-link">利用規約</a>
+        <span style="margin: 0 10px;">|</span>
+        <a href="./policy.html" class="footer-link">プライバシーポリシー</a>
+    </div>
     <p>&copy; 2026 sleepwalkerBOT / TeamKOTOCA All Rights Reserved.</p>
 </footer>
 
@@ -402,8 +521,16 @@
         const nav = document.getElementById('navMenu');
         nav.classList.toggle('active');
     }
+    
+    const toggle = document.getElementById("newsToggle");
+    const list = document.getElementById("newsList");
+    let opened = false;
+    toggle.addEventListener("click", () => {
+      opened = !opened;
+      list.style.maxHeight = opened ? list.scrollHeight + "px" : "4.5em";
+      toggle.textContent = opened ? "閉じる" : "もっと見る";
+      toggle.setAttribute("aria-expanded", opened);
+    });
 </script>
-
 </body>
 </html>
-
