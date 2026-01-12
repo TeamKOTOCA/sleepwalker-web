@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sleepwalkerBOT 公式サイト | 雑談をもっと楽しく</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #D7EAFB; /* アイコン由来の水色 */
+            --accent-pink: #FCE4EC;  /* アイコン由来のピンク */
+            --text-dark: #2C3E50;
+            --dark: #17232D;
+            --text-muted: #5D6D7E;
+            --white: #FFFFFF;
+            --bg-light: #F8FBFE;
+            --transition: all 0.3s ease;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary-blue);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+        }
+
+        .logo-text { font-size: 1.3rem; font-weight: 700; }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: #5dade2; }
+
+        /* モバイルメニューボタン */
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--bg-light) 100%);
+            padding: 130px 5% 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #5dade2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin: 0 0 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--dark);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--text-dark);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+        /* セクション共通 */
+        section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2rem; margin-bottom: 10px; }
+        .section-title p { color: var(--text-muted); }
+
+        /* 機能・コマンド */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 25px;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--primary-blue);
+            background: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .command-name {
+            display: block;
+            font-family: monospace;
+            background: #eef2f7;
+            padding: 5px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            color: #2980b9;
+            font-weight: bold;
+        }
+        .command-name span{
+            font-size: 1.5em;
+        }
+
+        /* Q&A */
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--primary-blue);
+        }
+
+        summary {
+            padding: 20px;
+            background: var(--bg-light);
+            cursor: pointer;
+            font-weight: 700;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '＋'; color: var(--text-muted); }
+        details[open] summary::after { content: 'ー'; }
+
+        .faq-content { padding: 20px; background: var(--white); border-top: 1px solid var(--primary-blue); }
+
+        /* サポートエリア */
+        .support-box {
+            background: var(--accent-pink);
+            border-radius: 35px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 64px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 64px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: 0.4s;
+            }
+            .nav-links.active { right: 0; }
+            .menu-btn { display: block; }
+            .grid { grid-template-columns: 1fr; }
+            section { padding: 50px 20px; }
+        }
+
+        .placeholder-img {
+            background: #eee;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo-area">
+        <img src="sleepwalker.png" alt="sleepwalkerBOTのアイコン：パステルブルーの眠そうなキャラクター、1:1比率" class="logo-img">
+        <span class="logo-text">sleepwalkerBOT</span>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="メニュー">
+        <svg width="30" height="30" viewBox="0 0 30 30"><path stroke="#2C3E50" stroke-width="2" d="M5 7h20M5 15h20M5 23h20"/></svg>
+    </button>
+    <nav class="nav-links" id="navMenu">
+        <a href="#features" onclick="toggleMenu()">特徴</a>
+        <a href="#commands" onclick="toggleMenu()">機能一覧</a>
+        <a href="#faq" onclick="toggleMenu()">Q&A</a>
+        <a href="#support" onclick="toggleMenu()">サポート</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="placeholder-img" style="width: 120px; height: 120px; margin: 0 auto 20px;">
+                <img src="sleepwalker.png" alt="sleepwalkerBOT アイコン(1:1)" style="width: 100%; border-radius: 25px;">
+            </div>
+            <h1>雑談を盛り上げ<br>活気をサーバーへ</h1>
+            <p>日本発の sleepwalkerBOT は、ユニークなコマンドで Discord の会話を彩るレクリエーション系 Bot です。人を傷つけない優しい設計を目指しています。</p>
+            <div class="btn-group">
+                <a href="https://discord.com/oauth2/authorize?client_id=1455802836154585098" class="btn btn-primary">サーバーに導入する</a>
+                <a href="https://discord.gg/2d8FQGHCxC" class="btn btn-secondary">サポートサーバー</a>
+                <span class="hero-badge">Version 1.7</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="section-title">
+            <h2>sleepwalkerBOT の特徴</h2>
+            <p>他のBotとは少し違う、独自のこだわりがあります。</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3> 日本発、日本語対応</h3>
+                <p>コマンドはすべて日本語。英語が苦手なコミュニティでも、直感的に操作して遊ぶことができます。</p>
+            </div>
+            <div class="card">
+                <h3> 唯一無二のユニークさ</h3>
+                <p>「ニックネーム変更」や「意味不明な文章」など、会話のきっかけ（アイスブレイク）を作る機能に特化しています。</p>
+            </div>
+            <div class="card">
+                <h3> 安心・安全な設計</h3>
+                <p>荒らしや攻撃的な言葉ではなく、みんなが笑顔になれるようなポジティブな機能提供を心がけています。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="commands" style="background-color: var(--bg-light); border-radius: 60px 60px 0 0;">
+        <div class="section-title">
+            <h2>あそべる機能</h2>
+            <p>文字コマンド（。ねむ〜）とスラッシュコマンドの両方に対応しています。</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <span class="command-name"><span>。ねむいみふ</span> <br /> /imihu</span>
+                <p>思わず「？」となる、意味不明な文章を生成します。シュールな空気感を楽しみたい時に。</p>
+            </div>
+            <div class="card">
+                <span class="command-name"><span>。ねむほめる</span>  <br /> /homeru</span>
+                <p>指定されたユーザーを全力で褒めます。サーバーに称賛の嵐を！</p>
+            </div>
+            <div class="card">
+                <span class="command-name"><span>。ねむおだい</span>  <br /> /odai</span>
+                <p>ランダムにお題を出します。雑談のネタが尽きた時の救世主です。</p>
+            </div>
+            <div class="card">
+                <span class="command-name"><span>。ねむにっく　@user</span> <br /> /nick</span>
+                <p>指定ユーザーのニックネームをランダムに変更します。※本人の許可がある場合のみ使用してください。</p>
+            </div>
+            <div class="card">
+                <span class="command-name"><span>。ねむあばうと</span> <br /> /about</span>
+                <p>BOTについての基本情報を表示します。まずはここからチェック！</p>
+            </div>
+            <div class="card">
+                <span class="command-name"><span>。ねむぴんぐ</span>  <br /> /ping</span>
+                <p>BOTの応答速度を確認します。正常に動いているか調べたい時にどうぞ。</p>
+            </div>
+            <div class="card">
+                <span class="command-name"><span>。ねむへるぷ</span> <br /> /help</span>
+                <p>ヘルプを表示します。botの使い方がわからなくなったときはチェック。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-title">
+            <h2>よくある質問 (Q&A)</h2>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <details class="faq-item">
+                <summary>導入に料金はかかりますか？</summary>
+                <div class="faq-content">完全に無料でお使いいただけます。どなたでもお気軽に導入してください。</div>
+            </details>
+            <details class="faq-item">
+                <summary>ニックネーム変更がうまく動きません</summary>
+                <div class="faq-content">BOTに「ニックネームの管理」権限があるか、またBOTのロール順位が変更対象のユーザーより上にあるかを確認してください。</div>
+            </details>
+            <details class="faq-item">
+                <summary>文字コマンドの頭文字は何ですか？</summary>
+                <div class="faq-content">全角の「。ねむ」です。「。ねむ〜」と入力してください。</div>
+            </details>
+            <details class="faq-item">
+                <summary>追加してほしい機能があります</summary>
+                <div class="faq-content">サポートサーバーにて要望を受け付けています。ぜひご参加ください！</div>
+            </details>
+        </div>
+    </section>
+
+    <section id="support">
+        <div class="support-box">
+            <h2>困ったときは？</h2>
+            <p>公式サポートサーバー 兼 プレイグラウンド（実験場）があります。<br>最新情報の確認や、導入前のテストもこちらで可能です。</p>
+            <a href="https://discord.gg/2d8FQGHCxC" class="btn btn-primary" style="margin-top: 20px;">サポートサーバーへ参加</a>
+            
+            <div style="margin-top: 60px;">
+                <h3>開発チーム</h3>
+                <a href="https://github.com/TeamKOTOCA" target="_blank" style="color: var(--text-dark); font-weight: 700;">TeamKOTOCA
+                <img class="placeholder-img" style="width: 80px; height: 80px; margin: 10px auto; border-radius: 0;" src="https://kotoca.net/KOTOCA.webp" alt="TeamKOTOCAのアイコン" />
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--primary-blue); font-size: 0.9rem;">
+    <p>&copy; 2026 sleepwalkerBOT / TeamKOTOCA All Rights Reserved.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('navMenu');
+        nav.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
+
