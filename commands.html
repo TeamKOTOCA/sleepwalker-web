@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コマンド一覧 / sleepwalkerBOT 公式サイト</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./sleepwalker.png" type="image/png">
+  <link rel="apple-touch-icon" href="./sleepwalker.png">
+  
+  <meta property="og:title" content="sleepwalkerBOT | 雑談を盛り上げるレクリエーション系bot">
+  <meta property="og:description" content="日本発祥のユニークなDiscord Bot。ニックネーム変更やおだい機能で、コミュニティの会話をゆるく盛り上げます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://swbot.kotoca.net/">
+  <meta property="og:image" content="./sleepwalker.png">
+  <meta property="og:site_name" content="sleepwalkerBOT 公式サイト">
+  <meta property="og:locale" content="ja_JP">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="sleepwalkerBOT | 公式サイト">
+  <meta name="twitter:description" content="雑談を盛り上げる日本発のDiscord Bot。人を傷つけない優しい設計。">
+  <meta name="twitter:image" content="./sleepwalker.png">
+
+<style>
+:root {
+  --primary-blue: #D7EAFB; /* アイコン由来の水色 */
+  --accent-pink: #FCE4EC;  /* アイコン由来のピンク */
+  --text-dark: #2C3E50;
+  --dark: #17232D;
+  --text-muted: #5D6D7E;
+  --white: #FFFFFF;
+  --bg-light: #F8FBFE;
+  --transition: all 0.3s ease;
+  --main-color: #D7EAFB;
+  --accent-color: #FCE4EC;
+  --text-color: #2C3E50;
+  --bg-color: #F8FCFF;
+  --card-bg: #EAF4FF;
+  --card-radius: 24px;
+  --card-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 70px 16px 16px 16px;
+}
+
+h1, h2, h3 {
+  margin: 0 0 8px 0;
+}
+        .btn {
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--white);
+            background-color: var(--text-dark);
+        }
+
+/* ヘッダー */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary-blue);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+        }
+
+        .logo-text { font-size: 1.3rem; font-weight: 700; }
+
+        .nav-links { display: flex; gap: 10px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .nav-links a.nav-small{
+          display: none;
+        }
+        .nav-links a:hover { color: #5dade2; }
+
+        /* モバイルメニューボタン */
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+/* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 64px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 64px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: 0.4s;
+            }
+            .nav-links a{
+              font-size: 1.2rem;
+              width:90%;
+              padding-bottom: 10px;
+            }
+            
+            .nav-links a.nav-small{
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              padding: 2px 0;
+              line-height: 1.2;
+              display: block;
+            }
+            .nav-links.active { right: 0; }
+            .menu-btn { display: block; }
+            .grid { grid-template-columns: 1fr; }
+            section { padding: 50px 20px; }
+        }
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--main-color);
+}
+
+#commands {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.command, .detail-card {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  padding: 16px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.command:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.command h3 {
+  cursor: pointer;
+}
+
+.invoke {
+  margin-top: 6px;
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-mode #controls {
+  display: none;
+}
+
+.detail-mode #commands {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.detail-header {
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.detail-header small {
+  color: #555;
+}
+pre{
+  text-wrap: wrap;
+}
+</style>
+</head>
+
+<body>
+<header>
+    <a href="#" class="logo-area">
+        <img src="sleepwalker.png" alt="sleepwalkerBOTのアイコン：パステルブルーの眠そうなキャラクター、1:1比率" class="logo-img">
+        <span id="pageTitle" class="logo-text">コマンド一覧</span>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="メニュー">
+        <svg width="30" height="30" viewBox="0 0 30 30"><path stroke="#2C3E50" stroke-width="2" d="M5 7h20M5 15h20M5 23h20"/></svg>
+    </button>
+    <nav class="nav-links" id="navMenu">
+        <a href="./index.html#features" onclick="toggleMenu()">特徴</a>
+        <a href="./index.html#news" onclick="toggleMenu()">お知らせ</a>
+        <a href="./index.html#commands" onclick="toggleMenu()">機能一覧</a>
+        <a href="./index.html#faq" onclick="toggleMenu()">Q&A</a>
+        <a href="./index.html#support" onclick="toggleMenu()">サポート</a>
+        <!-- 追加 -->
+        <a href="./terms.html" class="nav-small">利用規約</a>
+        <a href="./policy.html"class="nav-small">プライバシーポリシー</a>
+    </nav>
+</header>
+
+<div id="contents">
+  <div id="controls">
+    <input id="search" placeholder="例: ban 管理">
+    <select id="category">
+      <option value="">すべてのカテゴリ</option>
+    </select>
+  </div>
+  
+  <div id="commands"></div>
+</div>
+
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('navMenu');
+        nav.classList.toggle('active');
+    }
+
+
+
+
+let commands = [];
+let synonyms = {};
+const root = document.getElementById("commands");
+const searchInput = document.getElementById("search");
+const categorySelect = document.getElementById("category");
+
+/* ---------- util ---------- */
+function normalize(str) {
+  return str.toLowerCase().normalize("NFKC").replace(/[^\p{L}\p{N}]/gu, "");
+}
+
+function splitQuery(q) {
+  return q.trim().split(/\s+/).map(normalize).filter(Boolean);
+}
+
+function getCM() {
+  return new URLSearchParams(location.search).get("cm");
+}
+
+/* ---------- scoring ---------- */
+function scoreAND(cmd, words) {
+  if (!words.length) return 1;
+
+  const fields = [
+    cmd.name, cmd.description, cmd.details, cmd.category,
+    ...(cmd.aliases || []),
+    ...(cmd.invoke ? Object.values(cmd.invoke) : [])
+  ].map(normalize);
+
+  let total = 0;
+
+  for (const w of words) {
+    let score = 0;
+    for (const f of fields) {
+      if (f === w) score += 100;
+      else if (f.startsWith(w)) score += 50;
+      else if (f.includes(w)) score += 20;
+    }
+
+    for (const key in synonyms) {
+      const group = [key, ...synonyms[key]].map(normalize);
+      if (group.includes(w) && fields.some(f => f.includes(normalize(key)))) score += 10;
+    }
+
+    if (score === 0) return 0;
+    total += score;
+  }
+  return total;
+}
+
+/* ---------- render ---------- */
+function renderList(list) {
+  document.body.classList.remove("detail-mode");
+  document.title = "コマンド一覧 / Sleepwalker BOT";
+  document.getElementById("pageTitle").textContent = "コマンド一覧";
+
+  root.innerHTML = "";
+
+  if (!list.length) {
+    root.textContent = "該当するコマンドがありません";
+    return;
+  }
+
+  for (const c of list) {
+    const div = document.createElement("div");
+    div.className = "command";
+
+    div.innerHTML = `
+      <h3>/${c.name}</h3>
+      <p>${c.description}</p>
+      <div class="invoke">
+        Slash: ${c.invoke?.slash || "-"}<br>
+        Prefix: ${c.invoke?.prefix || "-"}
+      </div>
+    `;
+
+    div.querySelector("h3").onclick = () => {
+      history.pushState(null, "", `?cm=${c.name}`);
+      renderSingle(c);
+    };
+
+    root.appendChild(div);
+  }
+}
+
+function renderSingle(c) {
+  document.body.classList.add("detail-mode");
+  document.title = `/${c.name} | コマンド詳細`;
+  document.getElementById("pageTitle").textContent = `/${c.name}`;
+
+  root.innerHTML = "";
+
+  const div = document.createElement("div");
+  div.className = "detail-card";
+
+  div.innerHTML = `
+    <div class="detail-header">
+      <h2>/${c.name}</h2>
+      <small>カテゴリー: ${c.category}</small>
+    </div>
+
+    <p>${c.description}</p>
+
+    <h3>詳細</h3>
+    <pre>${c.details}</pre>
+    
+    <h3>実行方法</h3>
+    <div class="invoke">
+      Slash: ${c.invoke?.slash || "-"}<br>
+      Prefix: ${c.invoke?.prefix || "-"}
+    </div>
+
+    <button class="btn" id="back">コマンド一覧に戻る</button>
+  `;
+
+  div.querySelector("#back").onclick = () => {
+    history.pushState(null, "", "commands.html");
+    exitDetailMode();
+    renderList(commands);
+  };
+
+  root.appendChild(div);
+}
+
+function exitDetailMode() {
+  document.body.classList.remove("detail-mode");
+  document.title = "Commands";
+  document.getElementById("pageTitle").textContent = "Commands";
+}
+
+/* ---------- filter ---------- */
+function applyFilter() {
+  const words = splitQuery(searchInput.value);
+  const cat = categorySelect.value;
+
+  let list = commands;
+
+  if (!words.length && cat) {
+    list = commands.filter(c => c.category === cat)
+                   .sort((a,b)=>b.useCount-a.useCount);
+    renderList(list);
+    return;
+  }
+
+  list = commands
+    .map(c => ({c, score: scoreAND(c, words)}))
+    .filter(x => x.score>0 && (!cat || x.c.category===cat))
+    .sort((a,b)=>b.score-a.score)
+    .map(x=>x.c);
+
+  renderList(list);
+}
+
+/* ---------- init ---------- */
+Promise.all([
+  fetch("./search/commands.json").then(r=>r.json()),
+  fetch("./search/words.json").then(r=>r.json())
+]).then(([cmds, syn])=>{
+  commands = cmds.sort((a,b)=>b.useCount-a.useCount);
+  synonyms = syn;
+
+  const cats = new Set(commands.map(c=>c.category));
+  cats.forEach(c=>{
+    const o = document.createElement("option");
+    o.value=c;
+    o.textContent=c;
+    categorySelect.appendChild(o);
+  });
+
+  const cm = getCM();
+  if(cm){
+    const cmd = commands.find(c=>c.name===cm);
+    if(cmd){
+      renderSingle(cmd);
+      return;
+    }
+  }
+
+  renderList(commands);
+});
+
+searchInput.addEventListener("input", applyFilter);
+categorySelect.addEventListener("change", applyFilter);
+
+window.addEventListener("popstate", ()=>{
+  const cm = getCM();
+  if(cm){
+    const cmd = commands.find(c=>c.name===cm);
+    if(cmd) renderSingle(cmd);
+  } else {
+    exitDetailMode();
+    renderList(commands);
+  }
+});
+</script>
+</body>
+</html>
