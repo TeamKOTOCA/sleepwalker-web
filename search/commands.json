@@ -1,0 +1,98 @@
+[
+  {
+    "name": "about",
+    "description": "BOT情報を表示",
+    "details": "",
+    "category": "general",
+    "aliases": ["あばうと"],
+    "invoke": {
+      "slash": "/about",
+      "prefix": "あばうと"
+    },
+    "useCount": 0
+  },
+  {
+    "name": "gobi",
+    "description": "語尾強制イベントを発動",
+    "details": "",
+    "category": "general",
+    "aliases": ["ごび"],
+    "invoke": {
+      "slash": "/gobi",
+      "prefix": "ごび"
+    },
+    "useCount": 0
+  },
+  {
+    "name": "help",
+    "description": "コマンド一覧を表示",
+    "details": "",
+    "category": "general",
+    "aliases": ["へるぷ"],
+    "invoke": {
+      "slash": "/help",
+      "prefix": "へるぷ"
+    },
+    "useCount": 0
+  },
+  {
+    "name": "homeru",
+    "description": "指定ユーザーを褒めます",
+    "details": "",
+    "category": "general",
+    "aliases": ["ほめる"],
+    "invoke": {
+      "slash": "/homeru",
+      "prefix": "ほめる"
+    },
+    "useCount": 0
+  },
+  {
+    "name": "imihubun",
+    "description": "意味不明な文章を生成します",
+    "details": "",
+    "category": "general",
+    "aliases": ["いみふ"],
+    "invoke": {
+      "slash": "/imihubun",
+      "prefix": "いみふ"
+    },
+    "useCount": 0
+  },
+  {
+    "name": "change_nick",
+    "description": "指定ユーザーのニックネームを変更",
+    "details": "",
+    "category": "general",
+    "aliases": ["にっく"],
+    "invoke": {
+      "slash": "/change_nick",
+      "prefix": "にっく"
+    },
+    "useCount": 0
+  },
+  {
+    "name": "odai",
+    "description": "ランダムなお題を出します",
+    "details": "",
+    "category": "general",
+    "aliases": ["おだい"],
+    "invoke": {
+      "slash": "/odai",
+      "prefix": "おだい"
+    },
+    "useCount": 0
+  },
+  {
+    "name": "ping",
+    "description": "BOTのpingを確認",
+    "details": "",
+    "category": "general",
+    "aliases": ["ぴんぐ"],
+    "invoke": {
+      "slash": "/ping",
+      "prefix": "ぴんぐ"
+    },
+    "useCount": 0
+  }
+]
