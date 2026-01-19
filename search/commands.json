@@ -3,7 +3,7 @@
     "name": "about",
     "description": "BOT情報を表示",
     "details": "",
-    "category": "general",
+    "category": "システム",
     "aliases": ["あばうと"],
     "invoke": {
       "slash": "/about",
@@ -27,7 +27,7 @@
     "name": "help",
     "description": "コマンド一覧を表示",
     "details": "",
-    "category": "general",
+    "category": "システム",
     "aliases": ["へるぷ"],
     "invoke": {
       "slash": "/help",
@@ -87,7 +87,7 @@
     "name": "ping",
     "description": "BOTのpingを確認",
     "details": "",
-    "category": "general",
+    "category": "システム",
     "aliases": ["ぴんぐ"],
     "invoke": {
       "slash": "/ping",
